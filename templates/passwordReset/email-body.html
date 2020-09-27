@@ -1,0 +1,3 @@
+<h2>Click the link below to reset password...</h2>
+
+{{ protocol }}://{{ domain }}{% url 'password-reset-confirm' uidb64=uid token=token %}

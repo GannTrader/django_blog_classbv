@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <!-- Brand -->
+    <a class="navbar-brand" href="/">Logo</a>
+
+    <!-- Links -->
+    <ul class="navbar-nav">
+        <!-- Dropdown -->
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                Posts
+            </a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="{% url 'home' %}">View Posts</a>
+                <a class="dropdown-item" href="{% url 'create-post' %}">Create Post</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                Catagories
+            </a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="{% url 'catagory' %}">View Catagories</a>
+                <a class="dropdown-item" href="{% url 'create-catagory' %}">Create Catagory</a>
+            </div>
+        </li>
+        {% if not user.is_authenticated %}
+        <li class="nav-item">
+            <a href="{% url 'login' %}" class="nav-link">Login</a>
+        </li>
+        <li class="nav-item">
+            <a href="{% url 'register' %}" class="nav-link">Register</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+            <a href="{% url 'profile' %}" class="nav-link">Profile</a>
+        </li>
+        <li class="nav-item">
+            <a href="{% url 'logout' %}" class="nav-link">Logout</a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+<div class="container">
+    {% block content %}
+    {% endblock %}
+</div>
+
+</body>
+</html>
